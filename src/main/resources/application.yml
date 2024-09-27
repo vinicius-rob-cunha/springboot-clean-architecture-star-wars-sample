@@ -1,0 +1,17 @@
+logging.config: classpath:logback-spring.xml
+
+spring:
+  application.name: decision
+
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@localhost:27017/mydatabase?authSource=admin
+
+  cloud:
+    openfeign:
+      enabled: true
+
+feign:
+  client:
+    starWars:
+      url: http://localhost:9999
