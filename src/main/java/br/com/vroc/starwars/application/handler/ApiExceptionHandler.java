@@ -4,7 +4,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 import br.com.vroc.starwars.application.exception.ApiException;
 import br.com.vroc.starwars.application.exception.ErrorType;
-import br.com.vroc.starwars.application.logging.KoinLogger;
+import br.com.vroc.starwars.application.logging.VrocLogger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
-    private KoinLogger logger = KoinLogger.getLogger(ApiExceptionHandler.class);
+    private VrocLogger logger = VrocLogger.getLogger(ApiExceptionHandler.class);
 
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ApiErrorResponse> handleApiException(ApiException ex) {

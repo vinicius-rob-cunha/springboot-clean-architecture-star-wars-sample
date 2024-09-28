@@ -8,17 +8,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-public class KoinLogger {
+public class VrocLogger {
 
     private final Logger logger;
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private KoinLogger(Class<?> clazz) {
+    private VrocLogger(Class<?> clazz) {
         this.logger = LoggerFactory.getLogger(clazz);
     }
 
-    public static KoinLogger getLogger(Class<?> clazz) {
-        return new KoinLogger(clazz);
+    public static VrocLogger getLogger(Class<?> clazz) {
+        return new VrocLogger(clazz);
     }
 
     public void info(String message) {
@@ -61,7 +61,7 @@ public class KoinLogger {
         Map<String, Object> data = getData();
         data.putAll(newData);
 
-        newData.forEach((key, value) -> MDC.put("data" + key, value.toString()));
+        newData.forEach((key, value) -> MDC.put("data." + key, value.toString()));
     }
 
     private Map<String, Object> getData() {

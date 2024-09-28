@@ -1,5 +1,6 @@
-package br.com.vroc.starwars.stub;
+package br.com.vroc.starwars.it;
 
+import org.mockserver.client.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
 
@@ -23,8 +24,9 @@ public class MockServerManager {
         return "http://localhost:" + mockServer.getLocalPort();
     }
 
-    public static StarWarsApiStub createCharacterStub() {
-        return new StarWarsApiStub(mockServer);
+
+    public static MockServerClient getMockServerClient() {
+        return mockServer;
     }
 
 }

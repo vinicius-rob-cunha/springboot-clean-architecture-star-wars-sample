@@ -8,15 +8,15 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.http.HttpStatus.CREATED;
 
 import br.com.vroc.starwars.it.BaseIntegrationTest;
-import br.com.vroc.starwars.stub.MockServerManager;
 import br.com.vroc.starwars.stub.StarWarsApiStub;
+import br.com.vroc.starwars.stub.StarWarsStubFactory;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ActuatorIT extends BaseIntegrationTest {
 
-    private final StarWarsApiStub stub = MockServerManager.createCharacterStub();
+    private final StarWarsApiStub stub = StarWarsStubFactory.createCharacterStub();
 
     @BeforeEach
     void startMockServer() {

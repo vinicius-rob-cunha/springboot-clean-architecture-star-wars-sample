@@ -1,6 +1,5 @@
 package br.com.vroc.starwars.it;
 
-import br.com.vroc.starwars.stub.MockServerManager;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
