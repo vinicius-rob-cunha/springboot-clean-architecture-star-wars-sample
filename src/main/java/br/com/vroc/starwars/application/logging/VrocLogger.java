@@ -2,7 +2,6 @@ package br.com.vroc.starwars.application.logging;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,23 +57,7 @@ public class VrocLogger {
     }
 
     private void putToData(Map<String, Object> newData) {
-        Map<String, Object> data = getData();
-        data.putAll(newData);
-
         newData.forEach((key, value) -> MDC.put("data." + key, value.toString()));
-    }
-
-    private Map<String, Object> getData() {
-        String dataJson = MDC.get("data");
-        if (dataJson != null) {
-            try {
-                return objectMapper.readValue(dataJson, new TypeReference<>() {
-                });
-            } catch (Exception e) {
-                logger.error("Error reading data from MDC", e);
-            }
-        }
-        return new HashMap<>();
     }
 
     private Map<String, Object> objectToMap(Object data) {
