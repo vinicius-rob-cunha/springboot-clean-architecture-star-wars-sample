@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Get Character Response",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "species": {
+      "type": "string"
+    },
+    "planet": {
+      "type": "string"
+    },
+    "affiliation": {
+      "type": "string"
+    },
+    "lightsaberColor": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "species",
+    "planet",
+    "affiliation",
+    "lightsaberColor"
+  ]
+}

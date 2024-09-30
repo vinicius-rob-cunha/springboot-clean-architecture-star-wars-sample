@@ -53,7 +53,7 @@ class ActuatorIT extends BaseIntegrationTest {
             .then()
             .statusCode(CREATED.value())
             //valida schema
-            .body(matchesJsonSchemaInClasspath("response/get-character-response.json"))
+            .body(matchesJsonSchemaInClasspath("response/get-character-response-schema.json"))
             //valida conteúdo
             .body("$", hasKey("id"))
             .body("affiliation", equalTo("Rebel Alliance"))
