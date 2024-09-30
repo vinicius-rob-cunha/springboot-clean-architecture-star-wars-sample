@@ -1,5 +1,6 @@
-package br.com.vroc.starwars.it;
+package br.com.vroc.starwars.testsupport;
 
+import br.com.vroc.starwars.testsupport.config.TestSecurityConfig;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

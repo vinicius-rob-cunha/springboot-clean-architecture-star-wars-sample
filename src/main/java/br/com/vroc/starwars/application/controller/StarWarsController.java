@@ -4,7 +4,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 import br.com.vroc.starwars.application.controller.request.CharacterRequest;
 import br.com.vroc.starwars.application.controller.response.CharacterResponse;
-import br.com.vroc.starwars.application.logging.VrocLogger;
+import br.com.vroc.starwars.application.logging.KoinLogger;
 import br.com.vroc.starwars.application.mapper.CharacterMapper;
 import br.com.vroc.starwars.domain.business.StarWarsCharacterBusiness;
 import br.com.vroc.starwars.domain.entity.Character;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/starwars")
 public class StarWarsController {
 
-    private final VrocLogger logger = VrocLogger.getLogger(StarWarsController.class);
+    private final KoinLogger logger = KoinLogger.getLogger(StarWarsController.class);
 
     private final StarWarsCharacterBusiness business;
 

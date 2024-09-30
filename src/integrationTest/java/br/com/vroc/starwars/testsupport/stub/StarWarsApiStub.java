@@ -1,4 +1,4 @@
-package br.com.vroc.starwars.stub;
+package br.com.vroc.starwars.testsupport.stub;
 
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;

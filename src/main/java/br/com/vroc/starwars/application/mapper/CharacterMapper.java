@@ -7,7 +7,7 @@ import br.com.vroc.starwars.infrastructure.client.response.StarWarsSearchRespons
 import br.com.vroc.starwars.infrastructure.entity.CharacterEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring") // Integração com Spring para injeção de dependência
+@Mapper(componentModel = "spring")
 public interface CharacterMapper {
 
     Character toDomain(CharacterRequest character);

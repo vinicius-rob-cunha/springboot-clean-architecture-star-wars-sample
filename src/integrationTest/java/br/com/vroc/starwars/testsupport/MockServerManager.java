@@ -1,4 +1,4 @@
-package br.com.vroc.starwars.it;
+package br.com.vroc.starwars.testsupport;
 
 import org.mockserver.client.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
@@ -23,7 +23,6 @@ public class MockServerManager {
     public static String getBaseUrl() {
         return "http://localhost:" + mockServer.getLocalPort();
     }
-
 
     public static MockServerClient getMockServerClient() {
         return mockServer;

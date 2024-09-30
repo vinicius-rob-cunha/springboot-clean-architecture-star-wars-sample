@@ -1,4 +1,4 @@
-package br.com.vroc.starwars.it;
+package br.com.vroc.starwars.testsupport.config;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

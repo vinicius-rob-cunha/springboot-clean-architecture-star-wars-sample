@@ -11,8 +11,8 @@
   <groupId>br.com.vroc</groupId>
   <artifactId>starwars</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>decision</name>
-  <description>BNPL Decision</description>
+  <name>starwars</name>
+  <description>VROC SpringBoot Clean Arch Star Wars Sample</description>
   <url/>
   <licenses>
     <license/>
@@ -143,6 +143,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.pitest</groupId>
+      <artifactId>pitest-junit5-plugin</artifactId>
+      <version>1.2.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>json-schema-validator</artifactId>
       <version>5.5.0</version>
@@ -163,7 +170,7 @@
   </dependencyManagement>
 
   <build>
-    <finalName>bnpl-decision</finalName>
+    <finalName>vroc-starwars</finalName>
     <testResources>
       <testResource>
         <directory>src/test/resources</directory>
@@ -269,9 +276,16 @@
         <version>0.8.12</version>
         <configuration>
           <excludes>
-            <!--       <exclude>com/baeldung/**/ExcludedPOJO.class</exclude>-->
-            <!--       <exclude>com/baeldung/**/*Dto.*</exclude>-->
-            <exclude>**/dto/*</exclude>
+            <exclude>**/DecisionApplication**</exclude>
+            <exclude>**/mapper/**</exclude>
+            <exclude>**/exception/**</exclude>
+            <exclude>**/handler/**</exclude>
+            <exclude>**/logging/**</exclude>
+            <exclude>**/config/**</exclude>
+            <exclude>**/filter/**</exclude>
+            <exclude>**/request/**</exclude>
+            <exclude>**/response/**</exclude>
+            <exclude>**/entity/**</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -287,28 +301,32 @@
             </goals>
             <phase>prepare-package</phase>
           </execution>
-          <!-- Check the code coverage threshold -->
-          <!--      <execution>-->
-          <!--       <id>check</id>-->
-          <!--       <goals>-->
-          <!--        <goal>check</goal>-->
-          <!--       </goals>-->
-          <!--       <configuration>-->
-          <!--        <rules>-->
-          <!--         <rule>-->
-          <!--          <element>BUNDLE</element>-->
-          <!--          <limits>-->
-          <!--           <limit>-->
-          <!--            <counter>BRANCH</counter>-->
-          <!--            <value>COVEREDRATIO</value>-->
-          <!--            <minimum>0.80</minimum>-->
-          <!--           </limit>-->
-          <!--          </limits>-->
-          <!--         </rule>-->
-          <!--        </rules>-->
-          <!--       </configuration>-->
-          <!--       <phase>verify</phase>-->
-          <!--      </execution>-->
+          <execution>
+            <id>check-code-coverage</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>BUNDLE</element>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.95</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.95</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+            <phase>verify</phase>
+          </execution>
         </executions>
       </plugin>
       <!-- CHECKSTYLE -->
@@ -339,6 +357,32 @@
           <failsOnError>true</failsOnError>
           <consoleOutput>true</consoleOutput>
           <configLocation>config/checkstyle/google_checks.xml</configLocation>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.17.0</version>
+        <configuration>
+          <targetClasses>
+            <param>br.com.vroc.starwars.*</param>
+          </targetClasses>
+          <excludedClasses>
+            <param>br.com.vroc.starwars.DecisionApplication</param>
+            <param>br.com.vroc.starwars.application.mapper.*</param>
+            <param>br.com.vroc.starwars.application.exception.*</param>
+            <param>br.com.vroc.starwars.application.handler.*</param>
+            <param>br.com.vroc.starwars.application.logging.*</param>
+            <param>br.com.vroc.starwars.application.config.*</param>
+            <param>br.com.vroc.starwars.application.filter.*</param>
+            <param>br.com.vroc.starwars.application.controller.request.*</param>
+            <param>br.com.vroc.starwars.application.controller.response.*</param>
+            <param>br.com.vroc.starwars.domain.entity.*</param>
+            <param>br.com.vroc.starwars.infrastructure.entity.*</param>
+          </excludedClasses>
+          <avoidCallsTo>
+            <avoidCallsTo>br.com.vroc.starwars.application.logging</avoidCallsTo>
+          </avoidCallsTo>
         </configuration>
       </plugin>
     </plugins>

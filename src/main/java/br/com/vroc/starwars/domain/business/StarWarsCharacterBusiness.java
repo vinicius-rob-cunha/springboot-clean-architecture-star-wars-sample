@@ -10,17 +10,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StarWarsCharacterBusiness {
 
-    private final CharacterRepository starWarsRepository;
-    private final StarWarsApiClient starWarsApiClient;
+    private final CharacterRepository repository;
+    private final StarWarsApiClient apiClient;
 
-    public Character createCharacter(Character request) {
-        var apiCharacter = starWarsApiClient.getCharacterDetails(request.name());
+    public Character createCharacter(Character character) {
+        var apiCharacter = apiClient.getCharacterDetails(character.name());
 
-        var newCharacter = request.withSpecies(apiCharacter.species())
-            .withPlanet(apiCharacter.planet())
-            .withLightsaberColor(apiCharacter.lightsaberColor());
+        var newCharacter = character.toBuilder()
+            .species(apiCharacter.species())
+            .planet(apiCharacter.planet())
+            .lightsaberColor(apiCharacter.lightsaberColor())
+            .build();
 
-        return starWarsRepository.save(newCharacter);
+        return repository.save(newCharacter);
     }
 
 }

@@ -7,16 +7,16 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.http.HttpStatus.CREATED;
 
-import br.com.vroc.starwars.it.BaseIntegrationTest;
-import br.com.vroc.starwars.stub.StarWarsApiStub;
-import br.com.vroc.starwars.stub.StarWarsStubFactory;
+import br.com.vroc.starwars.testsupport.BaseIntegrationTest;
+import br.com.vroc.starwars.testsupport.stub.StarWarsApiStub;
+import br.com.vroc.starwars.testsupport.stub.Stubs;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ActuatorIT extends BaseIntegrationTest {
 
-    private final StarWarsApiStub stub = StarWarsStubFactory.createCharacterStub();
+    private final StarWarsApiStub stub = Stubs.characterStub();
 
     @BeforeEach
     void startMockServer() {
@@ -41,7 +41,7 @@ class ActuatorIT extends BaseIntegrationTest {
         String request = """
                 {
                     "name": "Luke Skywalker",
-                    "affiliation": "Jedi"
+                    "affiliation": "Rebel Alliance"
                 }
             """;
 
@@ -56,7 +56,7 @@ class ActuatorIT extends BaseIntegrationTest {
             .body(matchesJsonSchemaInClasspath("response/get-character-response.json"))
             //valida conteúdo
             .body("$", hasKey("id"))
-            .body("affiliation", equalTo("Jedi"))
+            .body("affiliation", equalTo("Rebel Alliance"))
             .body("lightsaberColor", equalTo("Green"));
     }
 }
